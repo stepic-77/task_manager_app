@@ -1,0 +1,47 @@
+{
+  "name": "task_manager",
+  "version": "1.0.0",
+  "description": "Una bellissima applicazione per la gestione delle task",
+  "main": "main.js",
+  "scripts": {
+    "dev": "concurrently -k \"vite\" \"wait-on tcp:5173 && electron .\"",
+    "build:react": "vite build",
+    "build:electron": "electron-builder",
+    "build": "npm run build:react && npm run build:electron",
+    "start": "npm run dev"
+  },
+  "build": {
+    "appId": "com.antigravity.taskmanager",
+    "productName": "Task Manager",
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "directories": {
+      "buildResources": "build"
+    },
+    "files": [
+      "dist-react/**/*",
+      "main.js",
+      "package.json"
+    ]
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.2",
+    "concurrently": "^10.0.3",
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3",
+    "vite": "^8.0.16",
+    "wait-on": "^9.0.10"
+  },
+  "dependencies": {
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-feather": "^2.0.10",
+    "react-sortablejs": "^6.1.4"
+  }
+}
